@@ -1,6 +1,8 @@
+import time;
+
 
 def exp1(id):
-    print("expression 1: ", int(id) / 2)
+    print("expression 1: ", "{0:.2f}".format(round((float(id) / 2), 2)))
 
 def exp2(id):
     print("expression 2: ", int(id) % 2)
@@ -20,12 +22,15 @@ def exp5(len, id):
     print("expression 5: ", abs(int(len) - int(id)))
 
 def exp6(id, len):
-    print("expression 6: ", int(id) / (int(len) + 1100))
+    print("expression 6: ", 
+    "{0:.2f}"
+    .format(round(float(id) / (float(len) + 1100.00),2)))
 
 def exp7(len, id):
-
-    # expression 7:            (n_let % n_let) and (my_id * my_id)
-    print("expression 7: " , int(len) % int(len), " and ", int(id) * int(id) )
+    print("expression 7: " ,
+     int(len) % int(len),
+      " and ",
+       int(id) * int(id) )
 
 def exp8(id):
     try:
@@ -36,7 +41,7 @@ def exp8(id):
 
 
 def exp9():
-    print("expression 9: ",round(3.15,1))
+    print("expression 9: ",round(float(3.15),1))
 
 def sumOfdigits(id):
     result = 0
@@ -51,8 +56,29 @@ if __name__ == "__main__":
     #  A valid student id contains only digits and is of length 8. 
     #  A valid last name contains only characters and is of a minimum length 2, 
     # maximum length 15.
-    lastname = input("what is your last name? ")
-    id = input("What is your student id? ")
+    while True:
+        lastname = input("what is your last name? ")
+        
+        if lastname.isalpha() and (len(lastname) >= 2 and len(lastname) <= 15) :
+            break
+        elif (len(lastname) <= 2 or len(lastname) >= 15 ):
+            print('minimum char is 2 and maximum is 15')
+        else:
+            print("Please enter characters A-Z only ")
+
+    while True:
+        id = input("What is your student id? ")
+
+        try:
+            val = int(id)
+            if len(id) == 8:
+                break
+            else:
+                print("id need to hava 8 digits")
+
+        except ValueError:
+            print("id needs to be a number")
+
     my_id = sumOfdigits(id)
     n_let = len(lastname)
 
@@ -68,7 +94,32 @@ if __name__ == "__main__":
     exp8(my_id)
     exp9()
 
+    ts = time.time()
+
+    timestamp = time.strftime('%Y-%m-%d ', time.localtime(ts))
+
+    print('----------------------------')
+    print("Today's date is ", timestamp)
 
 
 
 
+
+""" ------------------- RUN --------------------------
+what is your last name? kiamco
+What is your student id? 20259571
+my_id:  31
+n_let:  6
+expression 1:  15.50
+expression 2:  1
+expression 3:  21
+expression 4:  37
+expression 5:  25
+expression 6:  0.03
+expression 7:  0  and  961
+expresison 8:  1
+expression 9:  3.1
+----------------------------
+Today's date is  2020-01-13
+
+"""
