@@ -1,4 +1,4 @@
-/*
+
 """
 Write a program that enforces the following expectations of a data set file:
 
@@ -51,10 +51,39 @@ The sum is:
 
 #file reader
 def readFile(filename):
+    try:
+        sed = open(filename, 'r')
+        return sed
+    except:
+        print("file does not exist")
+        
+def getSum(nums):
+    sum = 0
 
+    #accumulate
+    for x in range(1, len(nums)):
+        sum += int(nums[x])
+    return sum
 
-#
-def getSum():
+def digits(num):
+    try:
+        return int(num)
+    except:
+        return num
+        
+
     
 if __name__ == "__main__":
-    file = input("Please enter file name: ")
+    
+    files = ['bad1.dat','bad2.dat','bad3.dat','bad4.dat','good.dat']
+    for x in files:
+        input = readFile(x).readlines()
+        
+        if(isinstance(digits(input[0]), int) and digits(input[0]) == len(input) - 1):
+            print('good file', getSum(input))
+        else:
+            print('bad file')
+            
+        
+        
+        
