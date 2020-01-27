@@ -21,23 +21,32 @@ class BankAccount:
 
     def withdraw(self, withdrawal):
         if(self.balance - withdrawal < 0):
-            self.balance -= withdrawal - OVERDRAFT_FEE
+            self.balance = self.balance - withdrawal - OVERDRAFT_FEE
             print('insuffecient funds, charged $10 overdraft fee')
         else:
             self.balance -= withdrawal
             print(f'withdrawal of ${withdrawal} successful')
 
-    def add_interest(self, added_interest):
-        is_30_days =  self.last_interest_date + timedelta(days=30)
+    def add_interest(self, added_interest, test_date = date.today()):
+        is_30_days =  self.last_interest_date + timedelta(days = 30)
 
         if(self.balance > 0 
         and added_interest >= MIN_RATE 
         and added_interest <= MAX_RATE
-        and date.today() == is_30_days):
+        and date.today() >= is_30_days):
             self.rate += added_interest
             print(f'%{added_interest} interest added')
         else:
-            print("did not add interest")
+            print("did not add interest (with today's date): ",date.today())
+            
+        if(test_date >= is_30_days
+        and added_interest >= MIN_RATE 
+        and added_interest <= MAX_RATE
+        and self.balance > 0):
+            self.rate += added_interest
+            print(f'%{added_interest} interest added (with a mock date): ',test_date)
+        else:
+            print("did not add interest (with a mock date): ",test_date)
 
         return self.rate
             

@@ -1,60 +1,9 @@
-
-"""
-Write a program that enforces the following expectations of a data set file:
-
-The file must exist
-The data in the file must have the following format:
- The file must start with an integer, n
-The file must contain n data values
-The program prompts the user for the name of a file.  The file is expected to contain data values.  The first line of the file should contain the total number of values, and the remaining lines contain the data. 
-
-Three key potential errors to program for include:
-
-The file might not begin with an integer
-There might not be a sufficient number of data values
-There may be additional input after reading all data values
-For a valid data file, the processing data task is to compute the sum of all the data values in the file.  Print out a result message and the accumulated sum for a valid data file.
-
-Testing Requirements
-Error Checking: First, validate  if the user supplied filename exists. Then run the following 5 test files provided to use as test cases for your program.  4 test cases are expected to raise exception conditions.  1 test case is a valid data set.  Generate an accumulated sum for the valid data set.
-
-Test Run Requirements: Use the provided 5 test files below as your test run validator.
-
-bad1.datPreview the document
-bad2.datPreview the document
-bad3.datPreview the document
-bad4.datPreview the document
-good.datPreview the document
-Here are some other tips and requirements:
-
-1.    Keep provided test files intact
-
-2.    Use a while loop to run test files as your input test suite to generate submission run output
-
-3.    Create user defined functions 
-
-4.    Provide an appropriate display message both for invalid and valid data files.
-
-5.   Be sure to print out the sum value for a valid file.
-
-Here is a sample partial run:
-
-Please enter the file name: nofile.dat
-Error: file not found.
-Please enter the file name: bad1.dat
-Error: file contents invalid.
-… 
-Please enter the file name: good.dat
-The sum is:    
-
-"""
-
 #file reader
 def readFile(filename):
     try:
         sed = open(filename, 'r')
         return sed
-    except:
+    except FileNotFoundError:
         print("file does not exist")
         
 def getSum(nums):
@@ -71,19 +20,80 @@ def digits(num):
     except:
         return num
         
-
-    
-if __name__ == "__main__":
-    
+def runTests():
+    print('----------- running tests -----------')
     files = ['bad1.dat','bad2.dat','bad3.dat','bad4.dat','good.dat']
     for x in files:
         input = readFile(x).readlines()
         
-        if(isinstance(digits(input[0]), int) and digits(input[0]) == len(input) - 1):
-            print('good file', getSum(input))
+        if(isinstance(digits(input[0]), int) 
+           and 
+           digits(input[0]) == len(input) - 1):
+            print(x,': good file, sum: ', getSum(input))
         else:
-            print('bad file')
+            print(x,': bad file')
+    print('------------- end --------------------\n')
             
         
+    
+if __name__ == "__main__":
+    runTests()
+    
+    trigger = True
+    
+    while trigger:
+        try:  
+            file1 = input("\nPlease enter file name? ")
+            line = readFile(file1).readlines()
+            trigger = False
+            if(file1 ==""):
+                line = ''
+            else:
+                line = readFile(file1).readlines()
+        except (AttributeError, TypeError,IndexError) as e:
+            print(e)
         
-        
+    while True:
+        try: 
+            if(isinstance(digits(line[0] or ''), int)
+                and
+                 digits(line[0]or '') == len(line) - 1):
+                print(file1,': good file, sum: ', getSum(line))
+            else:
+                print(file1,': bad file')
+                
+            file1 = input("Please enter file name? ")
+
+
+            if(file1 ==""):
+                line = ['na']
+                file1 = "file does not exist"
+            else:
+                line = readFile(file1).readlines()
+        except (AttributeError, TypeError, IndexError) as e:
+            print(e)
+       
+"""
+----------------- run --------------------------------------
+
+----------- running tests -----------
+bad1.dat : bad file
+bad2.dat : bad file
+bad3.dat : bad file
+bad4.dat : bad file
+good.dat : good file, sum:  55
+------------- end --------------------
+
+
+Please enter file name? bad1.dat
+bad1.dat : bad file
+Please enter file name? good.dat
+good.dat : good file, sum:  55
+Please enter file name? bad2.dat
+bad2.dat : bad file
+Please enter file name?
+file does not exist : bad file
+Please enter file name?
+
+------------- end---------------------------------------------
+"""
