@@ -41,6 +41,8 @@ def converter(date):
             convertedMonth = months.get(month).get("date")
             finalStr = f'{convertedMonth} {date}, {year}'
         else:
+            print('date does not exist')
+        
             raise SystemExit('invalid format')
     except(UnboundLocalError, AttributeError) as e:
         raise SystemExit('invalid format')
@@ -53,6 +55,14 @@ def is_leap(year):
         months["02"] = {"date": "February", "days": 29, "is_leap": True}
         
 
+
 date = input("Enter a date (mm/dd/yyyy): ")
 convertedDate = converter(date)
 print(f"the converted date is: {convertedDate}")
+
+while(date):
+    date = input("Enter a date (mm/dd/yyyy): ")
+    convertedDate = converter(date)
+    print(f"the converted date is: {convertedDate}")
+
+
