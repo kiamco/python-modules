@@ -4,16 +4,16 @@ import re
 
 months = {
     "01": {"date":"January", "days":31},
-    "02": {"date": "February","days": 31},
+    "02": {"date": "February","days": 28},
     "03": {"date": "March","days": 31},
-    "04": {"date": "April","days": 31},
+    "04": {"date": "April","days": 30},
     "05": {"date": "May","days": 31},
-    "06": {"date": "June","days": 31},
+    "06": {"date": "June","days": 30},
     "07": {"date": "July","days": 31},
     "08": {"date": "August","days": 31},
-    "09": {"date": "September","days": 31},
+    "09": {"date": "September","days": 30},
     "10": {"date": "October","days": 31},
-    "11": {"date": "Novemeber","days": 31},
+    "11": {"date": "Novemeber","days": 30},
     "12": {"date": "December","days": 31},
 }
 
