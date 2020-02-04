@@ -62,3 +62,48 @@ mock_date = date.today() + timedelta(days = 31)
 print(f'mock date will be {mock_date}')
 account.add_interest(1,mock_date)
 print(f'account interest: %{account.rate}\n')
+
+
+"""
+creating new account..
+account made with balance of  $1000
+
+depositing $500 ...
+current balance: 1500
+
+adding %1 rate
+last interest date on account: 2020-01-28
+mock date will be 2020-02-28
+did not add interest (with today's date):  2020-01-28
+%1 interest added (with a mock date):  2020-02-28
+account interest: %1.0
+
+adding %2 rate
+last interest date on account: 2020-01-28
+mock date will be 2020-02-28
+did not add interest (with today's date):  2020-01-28
+%2 interest added (with a mock date):  2020-02-28
+account interest: %3.0
+
+depositing $125,000.99 ...
+current balance: 126500.99
+
+withdrawing $0.99 ...
+withdrawal of $0.99 successful
+current balance: 126500.0
+
+withdrawing $0.99 ...
+withdrawal of $126500.0 successful
+current balance: 0.0
+
+withdrawing $10.00 ...
+insuffecient funds, charged $10 overdraft fee
+current balance: -20.0
+
+adding %1 rate
+last interest date on account: 2020-01-28
+mock date will be 2020-02-28
+did not add interest (with today's date):  2020-01-28
+did not add interest (with a mock date):  2020-02-28
+account interest: %3.0
+"""
