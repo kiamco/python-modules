@@ -50,3 +50,18 @@ if __name__ == "__main__":
     for key in count_by_key:
         print(f'\"{key}\" apears {count_by_key[key]} times')
 
+
+
+"""---------------------- run ---------------------------
+Todays date is: 2020-02-15
+"research" apears 10 times
+"climate" apears 5 times
+"evolution" apears 5 times
+"cultural" apears 8 times
+"leadership" apears 4 times
+"nation" apears 37 times
+"physical" apears 1 times
+"science" apears 55 times
+"biological" apears 1 times
+"engineering" apears 5 times
+"""
