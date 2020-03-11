@@ -1,3 +1,5 @@
+#!/bin/python
+
 import socket
 
 port=57854
