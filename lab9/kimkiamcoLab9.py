@@ -1,5 +1,14 @@
 #!/usr/bin/python3
 
+############################################################### 
+# C21B Intermediate Python Programming: PYTHON Unit 9
+# Name:   Kim Kiamco
+# Topic:  Multi threading 
+# Description:  using multi threading to run parallel processes
+# Lab to replace: Lab3
+# Date:  01/07/2018
+# ##############################################################
+
 import threading 
   
 FIVE = 5
